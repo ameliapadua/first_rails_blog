@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require 'faker'
+
+5.times do 
+  User.create!(name: Faker::Name.name, email: Faker::Internet.email, password: "password", password_confirmation: "password")
+end
+
+10.times do 
+  Post.create!(title: Faker::Lorem.sentence, body: Faker::Lorem.paragraph, user_id: rand(1..5))
+end

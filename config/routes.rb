@@ -2,7 +2,11 @@ Blog::Application.routes.draw do
   # get 'users' => 'users#index'
   # post 'users/create' => 'users#create'
 
-  resources :users, only: [:index, :create]
+  resources :users, only: [:index, :create] do 
+    post 'sign_in', on: :collection
+  end
+
+  resources :posts, only: [:index, :new, :create]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

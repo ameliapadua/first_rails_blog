@@ -1,12 +1,31 @@
 class UsersController < ApplicationController
   def index
-    @user = User.new
+    if session[:user_id]
+      redirect_to posts_path
+    else
+      @user = User.new
+    end
   end
 
   def create
-    @user = User.create(create_params)
+    @user = User.new(create_params)
 
-    render text: "OK"
+    if @user.save
+      redirect_to posts_path
+    else
+      render :index
+    end
+  end
+
+  def sign_in
+    @user = User.find_by(email: params[:user][:email]).try(:authenticate, params[:user][:password])
+    if @user
+      session[:user_id] = @user.id
+      redirect_to posts_path
+    else
+      @user = User.new
+      render :index
+    end
   end
 
   private
