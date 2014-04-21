@@ -13,5 +13,11 @@ describe Post do
       post.valid?
       post.errors[:body].should include("can't be blank")      
     end
+
+    it "requires user" do 
+      post = Post.new(user_id: nil)
+      post.valid?
+      post.errors[:user_id].should include("can't be blank")      
+    end
   end
 end

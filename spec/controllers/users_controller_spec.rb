@@ -34,6 +34,7 @@ describe UsersController do
       assigns(:user).should_not be_nil
       assigns(:user).should be_persisted
       assigns(:user).name.should == "Jonah Hex"
+      session[:user_id].should == assigns(:user).id
     end
 
     it "requires name and email" do
