@@ -81,4 +81,15 @@ describe UsersController do
       response.should render_template(:index)      
     end
   end
+
+  describe "sign_out" do 
+    it "signs out a user" do 
+      session[:user_id] = 1
+
+      post :sign_out
+
+      session[:user_id].should be_nil
+      response.should redirect_to(users_path)
+    end
+  end
 end

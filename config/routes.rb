@@ -2,8 +2,11 @@ Blog::Application.routes.draw do
   # get 'users' => 'users#index'
   # post 'users/create' => 'users#create'
 
+  root 'users#index'
+
   resources :users, only: [:index, :create] do 
     post 'sign_in', on: :collection
+    post 'sign_out', on: :collection
   end
 
   resources :posts, only: [:index, :new, :create]

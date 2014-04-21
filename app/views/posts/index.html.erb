@@ -1,6 +1,9 @@
-<%= link_to "Create new post", new_post_path %>
+<%= link_to "Create new post", new_post_path %> <br>
+<%= link_to "Sign Out", sign_out_users_path, method: :post %>
 
 <% @posts.each do |post| %>
-  <div><%= post.title %> by <%= post.user.name %></div>
-  <div><%= post.body %></div>
+  <section>
+    <h3><%= post.title %> by <small class="author"><%= post.user.name %></small></h3>
+    <p><%= post.body %></p>
+  </section>
 <% end %>
